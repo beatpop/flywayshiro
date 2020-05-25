@@ -1,0 +1,42 @@
+server:
+  port: 8182
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/flyway_shiro?useSSL=true&useUnicode=true&charset=utf8&characterEncoding=utf8&serverTimezone=Asia/Shanghai&createDatabaseIfNotExist=true
+    username: test
+    password: 12345678
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  jackson:
+    time-zone: Asia/Shanghai
+
+  flyway:
+    enabled: true
+    encoding: UTF-8
+    locations: classpath:/db/migration/
+    check-location: true
+    connect-retries: 3
+
+  freemarker:
+    template-loader-path: classpath:/templates/
+    check-template-location: true
+    suffix: .ftl
+    cache: false
+    settings:
+      classic_compatible: true #处理空值
+      template_exception_handler: rethrow
+      template_update_delay: 0
+      datetime_format: yyyy-MM-dd HH:mm
+      number_format: 0.##
+
+  mvc:
+    static-path-pattern: /static/**
+
+  output:
+    ansi:
+      enabled: always
